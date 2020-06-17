@@ -26,5 +26,10 @@ namespace TournamentUI
         {
 
         }
+
+        private void VsLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
