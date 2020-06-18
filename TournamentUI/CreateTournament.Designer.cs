@@ -239,9 +239,9 @@
             this.CreateTournButoon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateTournButoon.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateTournButoon.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.CreateTournButoon.Location = new System.Drawing.Point(275, 587);
+            this.CreateTournButoon.Location = new System.Drawing.Point(580, 546);
             this.CreateTournButoon.Name = "CreateTournButoon";
-            this.CreateTournButoon.Size = new System.Drawing.Size(429, 44);
+            this.CreateTournButoon.Size = new System.Drawing.Size(360, 44);
             this.CreateTournButoon.TabIndex = 24;
             this.CreateTournButoon.Text = "Create Tournament";
             this.CreateTournButoon.UseVisualStyleBackColor = true;
@@ -251,7 +251,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(951, 662);
+            this.ClientSize = new System.Drawing.Size(952, 602);
             this.Controls.Add(this.CreateTournButoon);
             this.Controls.Add(this.deleteprizebutton);
             this.Controls.Add(this.prizesLabel);
