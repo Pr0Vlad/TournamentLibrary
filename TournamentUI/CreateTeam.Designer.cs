@@ -62,11 +62,11 @@
             // TeamNameLabel
             // 
             this.TeamNameLabel.AutoSize = true;
-            this.TeamNameLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TeamNameLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TeamNameLabel.ForeColor = System.Drawing.SystemColors.Highlight;
             this.TeamNameLabel.Location = new System.Drawing.Point(14, 63);
             this.TeamNameLabel.Name = "TeamNameLabel";
-            this.TeamNameLabel.Size = new System.Drawing.Size(143, 32);
+            this.TeamNameLabel.Size = new System.Drawing.Size(157, 37);
             this.TeamNameLabel.TabIndex = 12;
             this.TeamNameLabel.Text = "Team Name";
             // 
