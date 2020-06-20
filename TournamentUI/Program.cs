@@ -16,7 +16,12 @@ namespace TournamentUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new tournamentDashBoard());
+            //initialize database connection
+            TournamentLibrary.GlobalConfig.InitializeConnections(true, true);
+
+
+            //Application.Run(new tournamentDashBoard());
+            Application.Run(new CreatePrize());
         }
     }
 }

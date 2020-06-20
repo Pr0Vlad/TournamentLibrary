@@ -10,6 +10,10 @@ namespace TournamentLibrary
     public class PrizeModel
     {  
         /// <summary>
+        /// identifier id for the prize 
+        /// </summary>
+        public int id { get; set; }
+        /// <summary>
         /// place of team
         /// </summary>
 

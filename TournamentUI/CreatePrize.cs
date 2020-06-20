@@ -16,5 +16,10 @@ namespace TournamentUI
         {
             InitializeComponent();
         }
+
+        private void CreatePrizeButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
