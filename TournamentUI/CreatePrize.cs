@@ -22,10 +22,27 @@ namespace TournamentUI
         {
              if (ValidateForm())
             {
-                PrizeModel model = new PrizeModel();
+                PrizeModel model = new PrizeModel(
+                    PlaceNameValueLabel.Text, 
+                    PlaceNumberValue.Text, 
+                    PrizeAmountBox.Text, 
+                    PrizePercentValue.Text);
 
-                model.PlaceName = PlaceNameValueLabel.Text;
-                model.PlaceNumber = PlaceNumberValue.Text;
+                foreach (IDataConnection db in GlobalConfig.connections)
+                {
+                    db.CreatePrize(model);
+                }
+
+                PlaceNameValueLabel.Text = "";
+                PlaceNumberValue.Text = "";
+                PrizeAmountBox.Text = "0";
+                PrizePercentValue.Text = "0";
+
+
+            }
+            else
+            {
+                MessageBox.Show("this form has invalid information, retry please");
             }
         }
         private bool ValidateForm()
