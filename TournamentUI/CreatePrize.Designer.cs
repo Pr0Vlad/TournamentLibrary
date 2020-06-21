@@ -31,7 +31,7 @@
             this.CreateTeamButton = new System.Windows.Forms.Button();
             this.PlaceNumberValue = new System.Windows.Forms.TextBox();
             this.PlaceNumberLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PlaceNameValueLabel = new System.Windows.Forms.TextBox();
             this.PlaceNameLabel = new System.Windows.Forms.Label();
             this.PrizeAmountBox = new System.Windows.Forms.TextBox();
             this.PriceAmountLabel = new System.Windows.Forms.Label();
@@ -76,14 +76,14 @@
             this.PlaceNumberLabel.TabIndex = 27;
             this.PlaceNumberLabel.Text = "Place Number";
             // 
-            // textBox1
+            // PlaceNameValueLabel
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(209, 156);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 29);
-            this.textBox1.TabIndex = 30;
+            this.PlaceNameValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PlaceNameValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlaceNameValueLabel.Location = new System.Drawing.Point(209, 156);
+            this.PlaceNameValueLabel.Name = "PlaceNameValueLabel";
+            this.PlaceNameValueLabel.Size = new System.Drawing.Size(140, 29);
+            this.PlaceNameValueLabel.TabIndex = 30;
             // 
             // PlaceNameLabel
             // 
@@ -175,7 +175,7 @@
             this.Controls.Add(this.prizePercentLabel);
             this.Controls.Add(this.PrizeAmountBox);
             this.Controls.Add(this.PriceAmountLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.PlaceNameValueLabel);
             this.Controls.Add(this.PlaceNameLabel);
             this.Controls.Add(this.PlaceNumberValue);
             this.Controls.Add(this.PlaceNumberLabel);
@@ -192,7 +192,7 @@
         private System.Windows.Forms.Button CreateTeamButton;
         private System.Windows.Forms.TextBox PlaceNumberValue;
         private System.Windows.Forms.Label PlaceNumberLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox PlaceNameValueLabel;
         private System.Windows.Forms.Label PlaceNameLabel;
         private System.Windows.Forms.TextBox PrizeAmountBox;
         private System.Windows.Forms.Label PriceAmountLabel;
