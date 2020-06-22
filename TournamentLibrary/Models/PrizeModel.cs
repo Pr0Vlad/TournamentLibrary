@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Text;
 
-namespace TournamentLibrary
+namespace TournamentLibrary.Models
 {
     /// <summary>
     /// represents the prozes

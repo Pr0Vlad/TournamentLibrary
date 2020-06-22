@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TournamentLibrary.Models;
 
-namespace TournamentLibrary
+namespace TournamentLibrary.DataAccess
 {
-    public class TextConnection : IDataConnection
+    public class TextConnector : IDataConnection
     {
         public PrizeModel CreatePrize(PrizeModel model)
         {

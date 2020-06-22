@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TournamentLibrary;
+using TournamentLibrary.DataAccess;
+using TournamentLibrary.Models;
 
 namespace TournamentUI
 {

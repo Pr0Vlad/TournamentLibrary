@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TournamentLibrary.DataAccess;
 
 namespace TournamentLibrary
 {
@@ -19,7 +20,7 @@ namespace TournamentLibrary
             if (textFiles)
             {
                 //setup txt connector
-                TextConnection text = new TextConnection();
+                TextConnector text = new TextConnector();
                 connections.Add(text);
             }
         }
