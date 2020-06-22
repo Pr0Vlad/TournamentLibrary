@@ -13,7 +13,7 @@ namespace TournamentLibrary.Models
         /// <summary>
         /// identifier id for the prize 
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// place of team
         /// </summary>
@@ -39,7 +39,7 @@ namespace TournamentLibrary.Models
 
         public PrizeModel(string placeName, string placeNumber, string prizeAmount, string prizePercentage)
         {
-            placeName = placeName;
+            PlaceName = placeName;
 
             //parsing the place value
             int placeNumberValue = 0;

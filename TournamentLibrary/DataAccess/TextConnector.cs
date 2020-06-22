@@ -9,7 +9,7 @@ namespace TournamentLibrary.DataAccess
     {
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            model.id = 1;
+            model.Id = 1;
 
             return model;
         }

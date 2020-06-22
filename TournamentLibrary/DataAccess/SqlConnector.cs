@@ -1,13 +1,12 @@
-﻿using Dapper;
+﻿
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Text;
 using TournamentLibrary.Models;
 using System.Configuration;
 using System.Threading.Tasks;
-
+using Dapper;
 
 namespace TournamentLibrary.DataAccess
 {
@@ -20,7 +19,7 @@ namespace TournamentLibrary.DataAccess
         /// <returns>prize info and its is, etc</returns>
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
             {
                 var p = new DynamicParameters();
                 p.Add("@PlaceNumber", model.PlaceNumber);
@@ -31,7 +30,7 @@ namespace TournamentLibrary.DataAccess
                       
                 connection.Execute("dbo.spPrizes_Insert", p, commandType: CommandType.StoredProcedure);
 
-                model.id = p.Get<int>("@id");
+                model.Id = p.Get<int>("@id");
 
                 return model;
             }

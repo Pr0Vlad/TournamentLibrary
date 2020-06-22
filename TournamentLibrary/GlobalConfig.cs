@@ -27,7 +27,7 @@ namespace TournamentLibrary
                 Connection = text;
             }
         }
-        public static string ConnectString(string name)
+        public static string CnnString(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
