@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TournamentLibrary.Models;
+using System.Data.SqlClient;
 
 namespace TournamentLibrary.DataAccess
 {

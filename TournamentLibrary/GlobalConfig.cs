@@ -1,28 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Text;
 using TournamentLibrary.DataAccess;
+
 
 namespace TournamentLibrary
 {
     public static class GlobalConfig
     {
-        public static List<IDataConnection> connections { get; private set; } = new List<IDataConnection>();
+        public static IDataConnection Connection { get; private set; }
 
-        public static void InitializeConnections(bool database, bool textFiles)
+        public static void InitializeConnections(DatabaseType db)
         {
-            if (database)
+
+            if (db == DatabaseType.Sql)
             {
                 //setup sql connector
                 SqlConnector sql = new SqlConnector();
-                connections.Add(sql);
+                Connection = sql;
             }
-            if (textFiles)
+            else if (db == DatabaseType.Textfile)
             {
                 //setup txt connector
                 TextConnector text = new TextConnector();
-                connections.Add(text);
+                Connection = text;
             }
+        }
+        public static string ConnectString(string name)
+        {
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
     }
 }

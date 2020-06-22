@@ -17,7 +17,7 @@ namespace TournamentUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //initialize database connection
-            TournamentLibrary.GlobalConfig.InitializeConnections(true, true);
+            TournamentLibrary.GlobalConfig.InitializeConnections(TournamentLibrary.DatabaseType.Sql);
 
 
             //Application.Run(new tournamentDashBoard());
