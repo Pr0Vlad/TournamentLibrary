@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TournamentLibrary;
 
 namespace TournamentUI
 {
@@ -17,7 +18,7 @@ namespace TournamentUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //initialize database connection
-            TournamentLibrary.GlobalConfig.InitializeConnections(TournamentLibrary.DatabaseType.Sql);
+            TournamentLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
 
 
             //Application.Run(new tournamentDashBoard());
