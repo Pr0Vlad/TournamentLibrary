@@ -26,6 +26,7 @@ namespace TournamentLibrary.DataAccess
             //converting models and added models back into text and saving as text file/updating
             prizes.WriteToPrizeFile(PrizesFile);
 
+            return model;
         }
     }
 }
