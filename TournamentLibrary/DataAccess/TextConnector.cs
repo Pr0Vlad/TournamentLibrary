@@ -16,9 +16,13 @@ namespace TournamentLibrary.DataAccess
             List<PrizeModel> prizes = PrizesFile.fullFilePath().LoadFile().ConvertToPrizeModels();
 
             //find max id
-            int currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
+            int currentId = 1;
+            if(prizes.Count > 0)
+            {
+                currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
+            }
             model.Id = currentId;
-            currentId += 1;
+            
 
             //adding new record with new id
             prizes.Add(model);
