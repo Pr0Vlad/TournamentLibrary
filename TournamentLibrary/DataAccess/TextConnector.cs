@@ -17,10 +17,11 @@ namespace TournamentLibrary.DataAccess
 
             //find max id
             int currentId = 1;
-            if(prizes.Count > 0)
+            if (prizes.Count > 0)
             {
                 currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
             }
+           
             model.Id = currentId;
             
 

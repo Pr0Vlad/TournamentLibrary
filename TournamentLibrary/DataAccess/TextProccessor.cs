@@ -14,7 +14,7 @@ namespace TournamentLibrary.DataAccess.TextHelper
         public static string fullFilePath(this string fileName)
         {
             //first part is the filepatch then filename
-            return$"{ConfigurationManager.AppSettings["filePath"]}\\{fileName}";
+            return $"{ConfigurationManager.AppSettings["filePath"]}\\{ fileName }";
         }
         public static List<string> LoadFile(this string file)
         {
@@ -37,7 +37,7 @@ namespace TournamentLibrary.DataAccess.TextHelper
                 PrizeModel p = new PrizeModel();
                 p.Id = int.Parse(cols[0]);
                 p.PlaceNumber = int.Parse(cols[1]);
-                p.PlaceName = (cols[2]);
+                p.PlaceName = (cols[2]);        
                 p.PrizeAmount = decimal.Parse(cols[3]);
                 p.PrizePercentage = double.Parse(cols[4]);
                 output.Add(p);
@@ -51,7 +51,7 @@ namespace TournamentLibrary.DataAccess.TextHelper
 
             foreach (PrizeModel p in models)
             {
-                lines.Add($"{p.Id}, {p.PlaceNumber}, {p.PlaceName}, {p.PlaceName}, {p.PrizeAmount}, {p.PrizePercentage}");
+                lines.Add($"{ p.Id },{ p.PlaceNumber },{ p.PlaceName },{ p.PrizeAmount },{ p.PrizePercentage }");
             }
             File.WriteAllLines(fileName.fullFilePath(), lines);
         }
