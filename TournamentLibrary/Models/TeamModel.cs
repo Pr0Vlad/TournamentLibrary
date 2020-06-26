@@ -12,7 +12,7 @@ namespace TournamentLibrary.Models
         /// <summary>
         /// people in the team
         /// </summary>
-        public List<Person> TeamMembers { get; set; }
+        public List<PersonModel> TeamMembers { get; set; }
         /// <summary>
         /// name of the team
         /// </summary>
@@ -22,7 +22,7 @@ namespace TournamentLibrary.Models
         /// </summary>
         public TeamModel()
         {
-            TeamMembers = new List<Person>();
+            TeamMembers = new List<PersonModel>();
         }
 
     }

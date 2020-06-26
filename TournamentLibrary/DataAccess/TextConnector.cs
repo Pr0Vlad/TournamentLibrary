@@ -10,6 +10,12 @@ namespace TournamentLibrary.DataAccess
     public class TextConnector : IDataConnection
     {
         private const string PrizesFile = "PrizeModels.csv";
+
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            throw new NotImplementedException();
+        }
+
         public PrizeModel CreatePrize(PrizeModel model)
         {   
             //loading textfile and converting it to a text List<orizemodel>

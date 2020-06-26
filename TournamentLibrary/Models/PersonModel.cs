@@ -7,8 +7,12 @@ namespace TournamentLibrary.Models
     /// <summary>
     /// person model
     /// </summary>
-    public class Person
+    public class PersonModel
     {
+        /// <summary>
+        /// identifier id for the person 
+        /// </summary>
+        public int Id { get; set; }
         /// <summary>
         /// firstname
         /// </summary>
@@ -26,7 +30,7 @@ namespace TournamentLibrary.Models
         /// </summary>
         public string PhoneNumber { get; set; }
 
-        public Person()
+        public PersonModel()
         {
 
         }
