@@ -10,10 +10,25 @@ namespace TournamentLibrary.DataAccess
     public class TextConnector : IDataConnection
     {
         private const string PrizesFile = "PrizeModels.csv";
+        private const string PeopleFile = "PeopleModels.csv";
 
         public PersonModel CreatePerson(PersonModel model)
         {
-            throw new NotImplementedException();
+            List<PersonModel> people = PeopleFile.fullFilePath().LoadFile().ConvertToPersonModels();
+            int currentId = 1;
+            if (people.Count > 0)
+            {
+                currentId = people.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+
+            people.Add(model);
+
+            people.WriteToPeopleFile(PeopleFile);
+
+            return model;
+            
         }
 
         public PrizeModel CreatePrize(PrizeModel model)
@@ -29,8 +44,7 @@ namespace TournamentLibrary.DataAccess
             }
            
             model.Id = currentId;
-            
-
+     
             //adding new record with new id
             prizes.Add(model);
 
