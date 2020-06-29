@@ -14,11 +14,30 @@ namespace TournamentUI
 {
     public partial class CreateTeam : Form
     {
+        private List<PersonModel> availTeamMembers = new List<PersonModel>();
+        private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
         public CreateTeam()
         {
             InitializeComponent();
+            MakeSample();
+            WireUpLists();
         }
+        private void MakeSample()
+        {
+            availTeamMembers.Add(new PersonModel { FirstName = "just", LastName = "working" });
+            availTeamMembers.Add(new PersonModel { FirstName = "pashka", LastName = "pavel" });
 
+            selectedTeamMembers.Add(new PersonModel { FirstName = "someone", LastName = "no one" });
+            selectedTeamMembers.Add(new PersonModel { FirstName = "test", LastName = "tester" });
+        }
+        private void WireUpLists()
+        {
+            SelectTeamMemberDropDown.DataSource = availTeamMembers;
+            SelectTeamMemberDropDown.DisplayMember = "FullName";
+
+            TeamMembersListBox.DataSource = selectedTeamMembers;
+            TeamMembersListBox.DisplayMember = "FullName";
+        }
         private void TeamOneScoreValue_TextChanged(object sender, EventArgs e)
         {
 

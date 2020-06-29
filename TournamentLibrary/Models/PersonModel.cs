@@ -29,7 +29,13 @@ namespace TournamentLibrary.Models
         /// phone number
         /// </summary>
         public string PhoneNumber { get; set; }
-
+        public string FullName
+        {
+            get
+            {
+                return $"{ FirstName } { LastName }";
+            }
+        }
         public PersonModel()
         {
 
