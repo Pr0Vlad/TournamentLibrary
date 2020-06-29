@@ -7,14 +7,16 @@ using TournamentLibrary.Models;
 using System.Configuration;
 using System.Threading.Tasks;
 using Dapper;
+using System.Linq;
 
 namespace TournamentLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
+        private const string db = "Tournaments";
         public PersonModel CreatePerson(PersonModel model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 //the id is actually gotten from sql server not written
                 var p = new DynamicParameters();
@@ -39,7 +41,7 @@ namespace TournamentLibrary.DataAccess
         /// <returns>prize info and its is, etc</returns>
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@PlaceNumber", model.PlaceNumber);
@@ -54,6 +56,16 @@ namespace TournamentLibrary.DataAccess
 
                 return model;
             }
+        }
+
+        public List<PersonModel> GetPerson_All()
+        {
+            List<PersonModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+            return output;
         }
     }
 }

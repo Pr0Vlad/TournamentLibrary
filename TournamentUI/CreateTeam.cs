@@ -14,14 +14,18 @@ namespace TournamentUI
 {
     public partial class CreateTeam : Form
     {
-        private List<PersonModel> availTeamMembers = new List<PersonModel>();
+        private List<PersonModel> availTeamMembers = GlobalConfig.Connection.GetPerson_All();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
         public CreateTeam()
         {
             InitializeComponent();
-            MakeSample();
+
+            //testing
+            //MakeSample();
+
             WireUpLists();
         }
+       
         private void MakeSample()
         {
             availTeamMembers.Add(new PersonModel { FirstName = "just", LastName = "working" });
@@ -32,11 +36,18 @@ namespace TournamentUI
         }
         private void WireUpLists()
         {
+            //to force a refresh
+            SelectTeamMemberDropDown.DataSource = null;
+
             SelectTeamMemberDropDown.DataSource = availTeamMembers;
             SelectTeamMemberDropDown.DisplayMember = "FullName";
 
+            TeamMembersListBox.DataSource = null;
+
             TeamMembersListBox.DataSource = selectedTeamMembers;
             TeamMembersListBox.DisplayMember = "FullName";
+
+            
         }
         private void TeamOneScoreValue_TextChanged(object sender, EventArgs e)
         {
@@ -101,6 +112,30 @@ namespace TournamentUI
                 return false;
             }
             return true;
+        }
+
+        private void AddMemberButton_Click(object sender, EventArgs e)
+        {
+            PersonModel p = (PersonModel)SelectTeamMemberDropDown.SelectedItem;
+
+            if (p != null)
+            {
+                availTeamMembers.Remove(p);
+                selectedTeamMembers.Add(p);
+
+                WireUpLists();
+            }
+        }
+
+        private void RemovMemberbutton_Click(object sender, EventArgs e)
+        {
+            PersonModel p = (PersonModel)TeamMembersListBox.SelectedItem;
+            if (p != null)
+            {
+                selectedTeamMembers.Remove(p);
+                availTeamMembers.Add(p);
+                WireUpLists();
+            }
         }
     }
 }
