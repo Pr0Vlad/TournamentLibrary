@@ -79,7 +79,9 @@ namespace TournamentUI
                 p.EmailAddress = EmailValue.Text;
                 p.PhoneNumber = PhoneValue.Text;
 
-                GlobalConfig.Connection.CreatePerson(p);
+                p = GlobalConfig.Connection.CreatePerson(p);
+                selectedTeamMembers.Add(p);
+                WireUpLists();
 
                 FirstNameValue.Text = "";
                 LastNameValue.Text = "";
