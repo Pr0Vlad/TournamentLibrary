@@ -56,7 +56,7 @@ namespace TournamentLibrary.DataAccess
 
         public List<PersonModel> GetPerson_All()
         {
-            throw new NotImplementedException();
+            return PeopleFile.fullFilePath().LoadFile().ConvertToPersonModels();
         }
     }
 }
