@@ -11,6 +11,8 @@ namespace TournamentLibrary.DataAccess
     {
         private const string PrizesFile = "PrizeModels.csv";
         private const string PeopleFile = "PeopleModels.csv";
+        private const string TeamFile = "TeamModel.csv";
+        
 
         public PersonModel CreatePerson(PersonModel model)
         {
@@ -51,6 +53,23 @@ namespace TournamentLibrary.DataAccess
             //converting models and added models back into text and saving as text file/updating
             prizes.WriteToPrizeFile(PrizesFile);
 
+            return model;
+        }
+
+        public TeamModel CreateTeam(TeamModel model)
+        {
+            List<TeamModel> teams = TeamFile.fullFilePath().LoadFile().ConvertToTeamModels(PeopleFile);
+
+            int currentId = 1;
+            if (teams.Count > 0)
+            {
+                currentId = teams.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+
+            teams.Add(model);
+            teams.WriteToTeamsFile(TeamFile);
             return model;
         }
 

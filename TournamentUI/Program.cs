@@ -21,7 +21,7 @@ namespace TournamentUI
 
 
             //testing
-            TournamentLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
+            TournamentLibrary.GlobalConfig.InitializeConnections(DatabaseType.Textfile);
             //TournamentLibrary.GlobalConfig.InitializeConnections(DatabaseType.Textfile);
 
 

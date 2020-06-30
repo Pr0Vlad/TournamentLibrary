@@ -139,5 +139,15 @@ namespace TournamentUI
                 WireUpLists();
             }
         }
+
+        private void CreateTeamButton_Click(object sender, EventArgs e)
+        {
+            TeamModel t = new TeamModel();
+
+            t.TeamName = TeamNameValueBox.Text;
+            t.TeamMembers = selectedTeamMembers;
+
+            t = GlobalConfig.Connection.CreateTeam(t);
+        }
     }
 }
