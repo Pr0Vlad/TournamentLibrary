@@ -33,7 +33,7 @@
             this.TournNameLabel = new System.Windows.Forms.Label();
             this.EntryFeeValue = new System.Windows.Forms.TextBox();
             this.EntryFeeLabel = new System.Windows.Forms.Label();
-            this.SelectDropDown = new System.Windows.Forms.ComboBox();
+            this.SelectTeamDropDown = new System.Windows.Forms.ComboBox();
             this.SelectTeamLabel = new System.Windows.Forms.Label();
             this.CreateTeamlinkLabel = new System.Windows.Forms.LinkLabel();
             this.AddTeamButton = new System.Windows.Forms.Button();
@@ -97,13 +97,13 @@
             this.EntryFeeLabel.TabIndex = 11;
             this.EntryFeeLabel.Text = "Entry Fee";
             // 
-            // SelectDropDown
+            // SelectTeamDropDown
             // 
-            this.SelectDropDown.FormattingEnabled = true;
-            this.SelectDropDown.Location = new System.Drawing.Point(20, 340);
-            this.SelectDropDown.Name = "SelectDropDown";
-            this.SelectDropDown.Size = new System.Drawing.Size(283, 38);
-            this.SelectDropDown.TabIndex = 14;
+            this.SelectTeamDropDown.FormattingEnabled = true;
+            this.SelectTeamDropDown.Location = new System.Drawing.Point(20, 340);
+            this.SelectTeamDropDown.Name = "SelectTeamDropDown";
+            this.SelectTeamDropDown.Size = new System.Drawing.Size(283, 38);
+            this.SelectTeamDropDown.TabIndex = 14;
             // 
             // SelectTeamLabel
             // 
@@ -216,9 +216,9 @@
             this.prizesLabel.ForeColor = System.Drawing.SystemColors.Highlight;
             this.prizesLabel.Location = new System.Drawing.Point(439, 290);
             this.prizesLabel.Name = "prizesLabel";
-            this.prizesLabel.Size = new System.Drawing.Size(179, 32);
+            this.prizesLabel.Size = new System.Drawing.Size(76, 32);
             this.prizesLabel.TabIndex = 22;
-            this.prizesLabel.Text = "Teams / Players";
+            this.prizesLabel.Text = "Prizes";
             // 
             // PrizeslistBox
             // 
@@ -262,7 +262,7 @@
             this.Controls.Add(this.CreatePrizeBotton);
             this.Controls.Add(this.AddTeamButton);
             this.Controls.Add(this.CreateTeamlinkLabel);
-            this.Controls.Add(this.SelectDropDown);
+            this.Controls.Add(this.SelectTeamDropDown);
             this.Controls.Add(this.SelectTeamLabel);
             this.Controls.Add(this.EntryFeeValue);
             this.Controls.Add(this.EntryFeeLabel);
@@ -285,7 +285,7 @@
         private System.Windows.Forms.Label TournNameLabel;
         private System.Windows.Forms.TextBox EntryFeeValue;
         private System.Windows.Forms.Label EntryFeeLabel;
-        private System.Windows.Forms.ComboBox SelectDropDown;
+        private System.Windows.Forms.ComboBox SelectTeamDropDown;
         private System.Windows.Forms.Label SelectTeamLabel;
         private System.Windows.Forms.LinkLabel CreateTeamlinkLabel;
         private System.Windows.Forms.Button AddTeamButton;
