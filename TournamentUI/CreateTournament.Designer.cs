@@ -38,7 +38,7 @@
             this.CreateTeamlinkLabel = new System.Windows.Forms.LinkLabel();
             this.AddTeamButton = new System.Windows.Forms.Button();
             this.CreatePrizeBotton = new System.Windows.Forms.Button();
-            this.TournPlayersListBox = new System.Windows.Forms.ListBox();
+            this.TournTeamsListBox = new System.Windows.Forms.ListBox();
             this.TournPlayersLabel = new System.Windows.Forms.Label();
             this.DeletePlayersButton = new System.Windows.Forms.Button();
             this.deleteprizebutton = new System.Windows.Forms.Button();
@@ -141,6 +141,7 @@
             this.AddTeamButton.TabIndex = 16;
             this.AddTeamButton.Text = "Add Team";
             this.AddTeamButton.UseVisualStyleBackColor = true;
+            this.AddTeamButton.Click += new System.EventHandler(this.AddTeamButton_Click);
             // 
             // CreatePrizeBotton
             // 
@@ -157,16 +158,16 @@
             this.CreatePrizeBotton.Text = "Create Prize";
             this.CreatePrizeBotton.UseVisualStyleBackColor = true;
             // 
-            // TournPlayersListBox
+            // TournTeamsListBox
             // 
-            this.TournPlayersListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TournPlayersListBox.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TournPlayersListBox.FormattingEnabled = true;
-            this.TournPlayersListBox.ItemHeight = 30;
-            this.TournPlayersListBox.Location = new System.Drawing.Point(445, 88);
-            this.TournPlayersListBox.Name = "TournPlayersListBox";
-            this.TournPlayersListBox.Size = new System.Drawing.Size(305, 152);
-            this.TournPlayersListBox.TabIndex = 18;
+            this.TournTeamsListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TournTeamsListBox.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TournTeamsListBox.FormattingEnabled = true;
+            this.TournTeamsListBox.ItemHeight = 30;
+            this.TournTeamsListBox.Location = new System.Drawing.Point(445, 88);
+            this.TournTeamsListBox.Name = "TournTeamsListBox";
+            this.TournTeamsListBox.Size = new System.Drawing.Size(305, 152);
+            this.TournTeamsListBox.TabIndex = 18;
             // 
             // TournPlayersLabel
             // 
@@ -258,7 +259,7 @@
             this.Controls.Add(this.PrizeslistBox);
             this.Controls.Add(this.DeletePlayersButton);
             this.Controls.Add(this.TournPlayersLabel);
-            this.Controls.Add(this.TournPlayersListBox);
+            this.Controls.Add(this.TournTeamsListBox);
             this.Controls.Add(this.CreatePrizeBotton);
             this.Controls.Add(this.AddTeamButton);
             this.Controls.Add(this.CreateTeamlinkLabel);
@@ -290,7 +291,7 @@
         private System.Windows.Forms.LinkLabel CreateTeamlinkLabel;
         private System.Windows.Forms.Button AddTeamButton;
         private System.Windows.Forms.Button CreatePrizeBotton;
-        private System.Windows.Forms.ListBox TournPlayersListBox;
+        private System.Windows.Forms.ListBox TournTeamsListBox;
         private System.Windows.Forms.Label TournPlayersLabel;
         private System.Windows.Forms.Button DeletePlayersButton;
         private System.Windows.Forms.Button deleteprizebutton;
