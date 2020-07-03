@@ -126,6 +126,7 @@
             this.CreateTeamlinkLabel.TabIndex = 15;
             this.CreateTeamlinkLabel.TabStop = true;
             this.CreateTeamlinkLabel.Text = "Create Team";
+            this.CreateTeamlinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CreateTeamlinkLabel_LinkClicked);
             // 
             // AddTeamButton
             // 

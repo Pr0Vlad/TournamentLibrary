@@ -16,10 +16,11 @@ namespace TournamentUI
     {
         private List<PersonModel> availTeamMembers = GlobalConfig.Connection.GetPerson_All();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
-        public CreateTeam()
+        private ITeamReq callingForm;
+        public CreateTeam(ITeamReq caller)
         {
             InitializeComponent();
-
+            callingForm = caller;
             //testing
             //MakeSample();
 
@@ -147,7 +148,10 @@ namespace TournamentUI
             t.TeamName = TeamNameValueBox.Text;
             t.TeamMembers = selectedTeamMembers;
 
-            t = GlobalConfig.Connection.CreateTeam(t);
+            GlobalConfig.Connection.CreateTeam(t);
+
+            callingForm.TeamComplete(t);
+            this.Close();
         }
     }
 }
