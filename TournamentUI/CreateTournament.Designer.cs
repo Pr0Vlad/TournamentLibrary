@@ -157,6 +157,7 @@
             this.CreatePrizeBotton.TabIndex = 17;
             this.CreatePrizeBotton.Text = "Create Prize";
             this.CreatePrizeBotton.UseVisualStyleBackColor = true;
+            this.CreatePrizeBotton.Click += new System.EventHandler(this.CreatePrizeBotton_Click);
             // 
             // TournTeamsListBox
             // 

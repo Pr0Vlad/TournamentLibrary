@@ -52,7 +52,7 @@ namespace TournamentLibrary.DataAccess
                       
                 connection.Execute("dbo.spPrizes_Insert", p, commandType: CommandType.StoredProcedure);
 
-                model.Id = p.Get<int>("@id");
+                model.Id = p.Get<int>("@id"); 
 
                 return model;
             }

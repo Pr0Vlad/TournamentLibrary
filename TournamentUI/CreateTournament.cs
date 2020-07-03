@@ -12,7 +12,7 @@ using TournamentLibrary.Models;
 
 namespace TournamentUI
 {
-    public partial class CreateTournament : Form
+    public partial class CreateTournament : Form, IPrizeReq
     {
         List<TeamModel> availTeams = GlobalConfig.Connection.GetTeam_All();
         List<TeamModel> selectedTeams = new List<TeamModel>();
@@ -49,6 +49,18 @@ namespace TournamentUI
 
                 connectUpLists();
             }
+        }
+
+        private void CreatePrizeBotton_Click(object sender, EventArgs e)
+        {
+            CreatePrize frm = new CreatePrize(this);
+            frm.Show();
+        }
+
+        public void PrizeComplete(PrizeModel model)
+        {
+            selectedPrizes.Add(model);
+            connectUpLists();
         }
     }
 }

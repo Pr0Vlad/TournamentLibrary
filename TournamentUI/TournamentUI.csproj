@@ -89,6 +89,7 @@
     <Compile Include="CreateTournament.Designer.cs">
       <DependentUpon>CreateTournament.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPrizeReq.cs" />
     <Compile Include="tournamentDashBoard.cs">
       <SubType>Form</SubType>
     </Compile>
