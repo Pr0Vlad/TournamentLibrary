@@ -80,7 +80,8 @@ namespace TournamentLibrary.DataAccess
 
         public List<TeamModel> GetTeam_All()
         {
-            throw new NotImplementedException();
+            return  TeamFile.fullFilePath().LoadFile().ConvertToTeamModels(PeopleFile);
         }
     }
 }
+ 

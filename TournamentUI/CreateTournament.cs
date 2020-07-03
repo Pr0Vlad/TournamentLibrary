@@ -74,5 +74,29 @@ namespace TournamentUI
             CreateTeam frm = new CreateTeam(this);
             frm.Show();
         }
+
+        private void deleteprizebutton_Click(object sender, EventArgs e)
+        {
+            TeamModel t = (TeamModel)TournTeamsListBox.SelectedItem;
+            if(t != null)
+            {
+                selectedTeams.Remove(t);
+                availTeams.Add(t);
+
+                connectUpLists(); 
+            }
+        }
+
+        private void DeletePrizeButton_Click_1(object sender, EventArgs e)
+        {
+            PrizeModel p = (PrizeModel)PrizeslistBox.SelectedItem;
+
+            if(p != null)
+            {
+                selectedPrizes.Remove(p);
+
+                connectUpLists();
+            }
+        }
     }
 }

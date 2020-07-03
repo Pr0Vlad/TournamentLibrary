@@ -82,6 +82,7 @@ namespace TournamentLibrary.DataAccess.TextHelper
                 {
                     t.TeamMembers.Add(people.Where(x => x.Id == int.Parse(id)).First());
                 }
+                output.Add(t);
             }
             return output;
         }
