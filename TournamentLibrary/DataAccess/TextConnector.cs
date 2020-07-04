@@ -73,6 +73,11 @@ namespace TournamentLibrary.DataAccess
             return model;
         }
 
+        public TournamentModel CreateTorunament(TournamentModel model)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<PersonModel> GetPerson_All()
         {
             return PeopleFile.fullFilePath().LoadFile().ConvertToPersonModels();

@@ -98,5 +98,24 @@ namespace TournamentUI
                 connectUpLists();
             }
         }
+
+        private void CreateTournButoon_Click(object sender, EventArgs e)
+        {
+            decimal fee = 0;
+            bool feeaccept = decimal.TryParse(EntryFeeValue.Text, out fee);
+
+            if (!feeaccept)
+            {
+                MessageBox.Show("enter a valid entryfee", "invalid fee", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            TournamentModel tm = new TournamentModel();
+            tm.TournamentName = TournamentNameBox.Text;
+            tm.EntryFee = 0
+
+            tm.Prizes = selectedPrizes;
+            tm.EnteredTeams = selectedTeams;
+        }
     }
 }

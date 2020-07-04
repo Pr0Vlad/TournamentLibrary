@@ -250,6 +250,7 @@
             this.CreateTournButoon.TabIndex = 24;
             this.CreateTournButoon.Text = "Create Tournament";
             this.CreateTournButoon.UseVisualStyleBackColor = true;
+            this.CreateTournButoon.Click += new System.EventHandler(this.CreateTournButoon_Click);
             // 
             // CreateTournament
             // 

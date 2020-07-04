@@ -14,5 +14,7 @@ namespace TournamentLibrary.DataAccess
         List<PersonModel> GetPerson_All();
         TeamModel CreateTeam(TeamModel model);
         List<TeamModel> GetTeam_All();
+
+        TournamentModel CreateTorunament(TournamentModel model);
     }
 }
