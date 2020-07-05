@@ -112,10 +112,12 @@ namespace TournamentUI
 
             TournamentModel tm = new TournamentModel();
             tm.TournamentName = TournamentNameBox.Text;
-            tm.EntryFee = 0
+            tm.EntryFee = 0;
 
             tm.Prizes = selectedPrizes;
             tm.EnteredTeams = selectedTeams;
+
+            GlobalConfig.Connection.CreateTorunament(tm);
         }
     }
 }
