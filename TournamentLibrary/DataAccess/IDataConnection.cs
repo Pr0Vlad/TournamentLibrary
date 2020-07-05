@@ -15,6 +15,6 @@ namespace TournamentLibrary.DataAccess
         TeamModel CreateTeam(TeamModel model);
         List<TeamModel> GetTeam_All();
 
-        TournamentModel CreateTorunament(TournamentModel model);
+        void CreateTournament(TournamentModel model);
     }
 }

@@ -9,6 +9,7 @@ namespace TournamentLibrary.Models
 /// </summary>
     public class MatchupModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// set of teams in the match
         /// </summary>
