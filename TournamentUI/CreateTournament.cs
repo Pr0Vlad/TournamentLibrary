@@ -117,6 +117,8 @@ namespace TournamentUI
             tm.Prizes = selectedPrizes;
             tm.EnteredTeams = selectedTeams;
 
+            Logic.CreateRounds(tm);
+
             GlobalConfig.Connection.CreateTournament(tm);
         }
     }
