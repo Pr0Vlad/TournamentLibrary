@@ -94,7 +94,7 @@ namespace TournamentLibrary.DataAccess
 
                 SaveTournamentPrizesEntries(connection, model);
 
-                
+                SaveTournamentRounds(connection, model);
             }
         }
         private void SaveTournament(IDbConnection connection, TournamentModel model)
@@ -131,7 +131,37 @@ namespace TournamentLibrary.DataAccess
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
 
-                connection.Execute("dbo.spTOurnamentEntries_Insert", p, commandType: CommandType.StoredProcedure);
+                connection.Execute("dbo.spTournamentEntries_Insert", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+        private void SaveTournamentRounds(IDbConnection connection, TournamentModel model)
+        {
+            foreach (List<MatchupModel> round in model.Rounds)
+            {
+                foreach (MatchupModel item in round)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@TournamentId", model.Id);
+                    p.Add("@MatchupRound", item.Id);
+                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+
+                    connection.Execute("dbo.spMatchups_Insert", p, commandType: CommandType.StoredProcedure);
+
+                    item.Id = p.Get<int>("@id");
+
+                    foreach (MatchupEntryModel entry in item.Entries)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@MatchupId", item.Id);
+                        p.Add("@ParentMatchupId", entry.ParentMatchup);
+                        p.Add("@TeamCompetingId", entry.TeamCompeting.Id);
+                        p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+
+                        connection.Execute("dbo.spMatchupEntries_Insert", p, commandType: CommandType.StoredProcedure);
+                    }
+                }
             }
         }
 

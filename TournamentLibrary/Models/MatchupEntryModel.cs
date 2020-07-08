@@ -7,6 +7,7 @@ namespace TournamentLibrary.Models
     public class MatchupEntryModel
     
     {
+        public int Id { get; set; }
         /// <summary>
         /// represents one matchup team
         /// </summary>
