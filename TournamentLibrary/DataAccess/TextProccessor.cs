@@ -168,11 +168,63 @@ namespace TournamentLibrary.DataAccess.TextHelper
             {
                 foreach (MatchupModel matchup in round)
                 {
-
+                    matchup.SaveMatchupToFile(matchupFile, matchupEntryFile);
                 }
             }
         }
-        public static void SaveMatchupToFile(this MatchupModel matchup, string matchupFile)
+        public static List<MatchupEntryModel> ConvertToMatchupEntryModels(this List<string> input)
+        {
+            throw new NotImplementedException();
+        }
+        private static List<MatchupEntryModel> ConvertStringToMatchupEntryModels(string input)
+        {
+            string[] ids = input.Split('|');
+            List<MatchupEntryModel> output = new List<MatchupEntryModel>();
+            List<MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.fullFilePath().LoadFile().ConvertToMatchupEntryModels();
+            foreach (string id in ids)
+            {
+                output.Add(entries.Where(x => x.Id == int.Parse(id)).First());
+            }
+            return output;
+
+        }
+        private static TeamModel LookupTeamById(int id)
+        {
+            List<TeamModel> teams = GlobalConfig.TeamFile.fullFilePath().LoadFile().ConvertToTeamModels(GlobalConfig.PeopleFile);
+
+            return teams.Where(x => x.Id == id).First();
+        }
+        public static List<MatchupModel> ConvertToMatchupModels(this List<string> lines)
+        {
+            List<MatchupModel> output = new List<MatchupModel>();
+
+            foreach (string line in lines)
+
+            {
+                string[] cols = line.Split(',');
+                MatchupModel p = new MatchupModel();
+                p.Id = int.Parse(cols[0]);
+                p.Entries = ConvertStringToMatchupEntryModels(cols[1]);
+                p.Winner = LookupTeamById(int.Parse(cols[2]));
+                p.MatchupROund = int.Parse(cols[3]);
+                output.Add(p);
+            }
+            return output;
+        }
+
+        public static void SaveMatchupToFile(this MatchupModel matchup, string matchupFile, string matchupEntryFile)
+        {
+
+
+            foreach (MatchupEntryModel entry in matchup.Entries)
+            {
+                entry.SaveEntryToFile(matchupEntryFile);
+                
+            }
+        }
+
+
+        public static void SaveEntryToFile(this MatchupModel matchup, string matchupEntryFile)
         {
 
         }
