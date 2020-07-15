@@ -162,6 +162,20 @@ namespace TournamentLibrary.DataAccess.TextHelper
 
             File.WriteAllLines(fileName.fullFilePath(), lines);
         }
+        public static void SaveRoundsToFile(this TournamentModel model, string matchupFile, string matchupEntryFile)
+        {
+            foreach (List<MatchupModel> round in model.Rounds)
+            {
+                foreach (MatchupModel matchup in round)
+                {
+
+                }
+            }
+        }
+        public static void SaveMatchupToFile(this MatchupModel matchup, string matchupFile)
+        {
+
+        }
 
         private static string ConvertRoundListToString(List<List<MatchupModel>> rounds)
         {
