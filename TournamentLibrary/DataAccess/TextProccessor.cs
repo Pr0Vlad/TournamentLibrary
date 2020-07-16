@@ -301,12 +301,27 @@ namespace TournamentLibrary.DataAccess.TextHelper
             }
             matchup.Id = current;
 
-            foreach(MatchupEntryModel e in matchup.Entries)
+            matchups.Add(matchup);
+
+            List<string> lines = new List<string>();
+            foreach (MatchupModel m in matchups)
+
+            {
+                string winner = "";
+                if (m.Winner != null)
+                {
+                    winner = m.Winner.Id.ToString();
+                }
+                lines.Add($"{ m.Id },{ "" },{ winner },{ m.MatchupROund }");
+            }
+            File.WriteAllLines(GlobalConfig.MatchupFile.fullFilePath(), lines);
+
+            foreach (MatchupEntryModel e in matchup.Entries)
             {
                 e.SaveEntryToFile(matchupEntryFile);
             }
 
-            List<string> lines = new List<string>();
+            lines = new List<string>();
             foreach(MatchupModel m in matchups)
 
             {
