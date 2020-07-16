@@ -6,6 +6,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using TournamentLibrary.Models;
 
 namespace TournamentLibrary.DataAccess.TextHelper
@@ -172,9 +173,36 @@ namespace TournamentLibrary.DataAccess.TextHelper
                 }
             }
         }
-        public static List<MatchupEntryModel> ConvertToMatchupEntryModels(this List<string> input)
+        public static List<MatchupEntryModel> ConvertToMatchupEntryModels(this List<string> lines)
         {
-            throw new NotImplementedException();
+            List<MatchupEntryModel> output = new List<MatchupEntryModel>();
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+                MatchupEntryModel m = new MatchupEntryModel();
+                m.Id = int.Parse(cols[0]);
+                m.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
+                m.Score = double.Parse(cols[2]);
+
+                int parentId = 0;
+                if (int.TryParse(cols[3], out parentId))
+                {
+                    m.ParentMatchup = LookupMatchupById(parentId);
+                }
+                else
+                {
+                    m.ParentMatchup = null;
+                }
+               
+                output.Add(m);
+            }
+            return output;
+        }
+        private static MatchupModel LookupMatchupById(int id)
+        {
+            List<MatchupModel> matchups = GlobalConfig.MatchupFile.fullFilePath().LoadFile().ConvertToMatchupModels();
+
+            return matchups.Where(x => x.Id == id).First();
         }
         private static List<MatchupEntryModel> ConvertStringToMatchupEntryModels(string input)
         {
@@ -211,23 +239,37 @@ namespace TournamentLibrary.DataAccess.TextHelper
             }
             return output;
         }
+        public static void SaveEntryToFile(this MatchupEntryModel entry, string matchupEntryFile)
+        {
+            List<MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.fullFilePath().LoadFile().ConvertToMatchupEntryModels();
 
+            int current = 1;
+
+            if (entries.Count > 0)
+            {
+                current = entries.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+            entry.Id = current;
+        }
         public static void SaveMatchupToFile(this MatchupModel matchup, string matchupFile, string matchupEntryFile)
         {
-
-
-            foreach (MatchupEntryModel entry in matchup.Entries)
+            List<MatchupModel> matchups = GlobalConfig.MatchupFile.fullFilePath().LoadFile().ConvertToMatchupModels();
+            int current = 1;
+            if(matchups.Count > 0)
             {
-                entry.SaveEntryToFile(matchupEntryFile);
-                
+                current = matchups.OrderByDescending(x => x.Id).First().Id + 1;
             }
+            matchup.Id = current;
+
+            foreach(MatchupEntryModel e in matchup.Entries)
+            {
+                e.SaveEntryToFile(matchupEntryFile);
+            }
+            
         }
 
 
-        public static void SaveEntryToFile(this MatchupModel matchup, string matchupEntryFile)
-        {
-
-        }
+       
 
         private static string ConvertRoundListToString(List<List<MatchupModel>> rounds)
         {

@@ -77,7 +77,7 @@ namespace TournamentLibrary.DataAccess
 
         public void CreateTournament(TournamentModel model)
         {
-            List<TournamentModel> tournaments = TournamentFile.fullFilePath().LoadFile().ConvertToTournamentModels(TeamFile, TeamFile, PrizesFile);
+            List<TournamentModel> tournaments = TournamentFile.fullFilePath().LoadFile().ConvertToTournamentModels(TeamFile, PeopleFile, PrizesFile);
 
             int currentId = 1;
 
