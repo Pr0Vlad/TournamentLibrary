@@ -93,6 +93,7 @@ namespace TournamentLibrary.DataAccess.TextHelper
             List<TournamentModel> output = new List<TournamentModel>();
             List<TeamModel> teams = teamFileName.fullFilePath().LoadFile().ConvertToTeamModels(peopleFileName);
             List<PrizeModel> prizes = prizeFileName.fullFilePath().LoadFile().ConvertToPrizeModels();
+            List<MatchupModel> matchups = GlobalConfig.MatchupFile.fullFilePath().LoadFile().ConvertToMatchupModels();
             foreach (string line in lines)
             {
                 string[] cols = line.Split(',');
@@ -115,6 +116,19 @@ namespace TournamentLibrary.DataAccess.TextHelper
                 {
                     tm.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
                 }
+                string[] rounds = cols[5].Split('|');
+                List<MatchupModel> ms = new List<MatchupModel>();
+                foreach(string round in rounds)
+                {
+                    string[] m = round.Split('^');
+
+                    foreach (string matchupmodeltextid in m)
+                    {
+                        ms.Add(matchups.Where(x => x.Id == int.Parse(matchupmodeltextid)).First());
+                    }
+                    tm.Rounds.Add(ms);
+                }
+
                 output.Add(tm);
 
             }
@@ -181,7 +195,15 @@ namespace TournamentLibrary.DataAccess.TextHelper
                 string[] cols = line.Split(',');
                 MatchupEntryModel m = new MatchupEntryModel();
                 m.Id = int.Parse(cols[0]);
-                m.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
+                if (cols[1].Length == 0)
+                {
+                    m.TeamCompeting = null;
+                }
+                else
+                {
+                    m.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
+                }
+                
                 m.Score = double.Parse(cols[2]);
 
                 int parentId = 0;
@@ -250,6 +272,24 @@ namespace TournamentLibrary.DataAccess.TextHelper
                 current = entries.OrderByDescending(x => x.Id).First().Id + 1;
             }
             entry.Id = current;
+            entries.Add(entry);
+
+            List<string> lines = new List<string>();
+            foreach (MatchupEntryModel e in entries)
+            {
+                string parent = "";
+                if (e.ParentMatchup != null)
+                {
+                    parent = e.ParentMatchup.Id.ToString();
+                }
+                string teamCompeting = "";
+                if (e.TeamCompeting != null)
+                {
+                    teamCompeting = e.TeamCompeting.Id.ToString();
+                }
+                lines.Add($"{ e.Id },{ teamCompeting },{ e.Score },{ parent }");
+            }
+            File.WriteAllLines(GlobalConfig.MatchupEntryFile.fullFilePath(), lines);
         }
         public static void SaveMatchupToFile(this MatchupModel matchup, string matchupFile, string matchupEntryFile)
         {
@@ -265,7 +305,35 @@ namespace TournamentLibrary.DataAccess.TextHelper
             {
                 e.SaveEntryToFile(matchupEntryFile);
             }
+
+            List<string> lines = new List<string>();
+            foreach(MatchupModel m in matchups)
+
+            {
+                string winner = "";
+                if (m.Winner != null)
+                {
+                    winner = m.Winner.Id.ToString();
+                }
+                lines.Add($"{ m.Id },{ ConvertMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupROund }");
+            }
+            File.WriteAllLines(GlobalConfig.MatchupFile.fullFilePath(), lines);
             
+        }
+        public static string ConvertMatchupEntryListToString(List<MatchupEntryModel> entries)
+        {
+            string output = "";
+
+            if(entries.Count == 0)
+            {
+                return "";
+            }
+            foreach(MatchupEntryModel e in entries)
+            {
+                output += $"{ e.Id }|";
+            }
+            output = output.Substring(0, output.Length - 1);
+            return output;
         }
 
 
