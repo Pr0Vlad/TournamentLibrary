@@ -110,12 +110,16 @@ namespace TournamentLibrary.DataAccess.TextHelper
                     tm.EnteredTeams.Add(teams.Where(x => x.Id == int.Parse(id)).First());
                 }
 
-                string[] prizeIds = cols[4].Split('|');
 
-                foreach(string id in prizeIds)
-                {
-                    tm.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
+                if (cols[4].Length > 0) {
+                    string[] prizeIds = cols[4].Split('|');
+
+                    foreach (string id in prizeIds)
+                    {
+                        tm.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
+                    }
                 }
+
                 string[] rounds = cols[5].Split('|');
                 List<MatchupModel> ms = new List<MatchupModel>();
                 foreach(string round in rounds)
