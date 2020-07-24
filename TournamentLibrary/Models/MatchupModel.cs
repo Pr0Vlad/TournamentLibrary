@@ -15,6 +15,10 @@ namespace TournamentLibrary.Models
         /// </summary>
         public List<MatchupEntryModel> Entries { get; set; }
         /// <summary>
+        /// winner id from database used to find the winner
+        /// </summary>
+        public int WinnerId { get; set; }
+        /// <summary>
         /// winner of the match
         /// </summary>
         public TeamModel Winner { get; set; }

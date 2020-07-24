@@ -210,5 +210,33 @@ namespace TournamentLibrary.DataAccess
             return output;
 
         }
+
+        public List<TournamentModel> GetTournament_All()
+        {
+            List<TournamentModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                output = connection.Query<TournamentModel>("dbo.spTournaments_GetAll").ToList();
+
+                foreach(TournamentModel t in output)
+                {
+                    t.Prizes = connection.Query<PrizeModel>("dbo.spPrizes_GetByTournament").ToList();
+
+                    t.EnteredTeams = connection.Query<TeamModel>("dbo.spTeam_GetByTournament").ToList();
+                    foreach(TeamModel team in t.EnteredTeams)
+                    {
+                        var p = new DynamicParameters();
+                        p.Add("@TeamId", team.Id);
+
+                        team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMmembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
+                    }
+                    var p = new DynamicParameters();
+                    p.Add("@TournamentId", t.Id);
+                    List<MatchupModel> matches = connection.Query<MatchupModel>("spMatchups_GetByTournament", p, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            return output;
+
+        }
     }
 }
