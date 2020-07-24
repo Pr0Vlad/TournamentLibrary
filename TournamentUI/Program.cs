@@ -21,14 +21,14 @@ namespace TournamentUI
 
 
             //testing
-            TournamentLibrary.GlobalConfig.InitializeConnections(DatabaseType.Textfile);
+            TournamentLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
             //TournamentLibrary.GlobalConfig.InitializeConnections(DatabaseType.Textfile);
 
 
-            //Application.Run(new tournamentDashBoard());
+            Application.Run(new tournamentDashBoard());
             //Application.Run(new CreatePrize());
             //Application.Run(new CreateTeam());
-            Application.Run(new CreateTournament());
+           // Application.Run(new CreateTournament());
         }
     }
 }

@@ -104,6 +104,10 @@ namespace TournamentLibrary.DataAccess
             return  TeamFile.fullFilePath().LoadFile().ConvertToTeamModels(PeopleFile);
         }
 
+        public List<TournamentModel> GetTournament_All()
+        {
+            return TournamentFile.fullFilePath().LoadFile().ConvertToTournamentModels(TeamFile, PeopleFile, PrizesFile);
+        }
     }
 }
  

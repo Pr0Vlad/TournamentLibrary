@@ -14,10 +14,23 @@ namespace TournamentUI
 {
     public partial class tournamentDashBoard : Form
     {
-        List<TournamentModel> tournaments = GlobalConfig.Connection.GetTournament_All()
+        List<TournamentModel> tournaments = GlobalConfig.Connection.GetTournament_All();
         public tournamentDashBoard()
         {
             InitializeComponent();
+
+            ConnectLists();
+        }
+        private void ConnectLists()
+        {
+            TournamentDropDown.DataSource = tournaments;
+            TournamentDropDown.DisplayMember = "TournamentName";
+        }
+
+        private void CreateTournButton_Click(object sender, EventArgs e)
+        {
+            CreateTournament frm = new CreateTournament();
+            frm.Show();
         }
     }
 }

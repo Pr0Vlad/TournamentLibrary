@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.TournDashBoardbutton = new System.Windows.Forms.Button();
-            this.SelectTeamMemberDropDown = new System.Windows.Forms.ComboBox();
+            this.TournamentDropDown = new System.Windows.Forms.ComboBox();
             this.loadexisting = new System.Windows.Forms.Label();
             this.LoadTOurnButton = new System.Windows.Forms.Button();
             this.CreateTournButton = new System.Windows.Forms.Button();
@@ -50,13 +50,13 @@
             this.TournDashBoardbutton.Text = "Tournament Dashboard";
             this.TournDashBoardbutton.UseVisualStyleBackColor = true;
             // 
-            // SelectTeamMemberDropDown
+            // TournamentDropDown
             // 
-            this.SelectTeamMemberDropDown.FormattingEnabled = true;
-            this.SelectTeamMemberDropDown.Location = new System.Drawing.Point(129, 204);
-            this.SelectTeamMemberDropDown.Name = "SelectTeamMemberDropDown";
-            this.SelectTeamMemberDropDown.Size = new System.Drawing.Size(515, 45);
-            this.SelectTeamMemberDropDown.TabIndex = 29;
+            this.TournamentDropDown.FormattingEnabled = true;
+            this.TournamentDropDown.Location = new System.Drawing.Point(129, 204);
+            this.TournamentDropDown.Name = "TournamentDropDown";
+            this.TournamentDropDown.Size = new System.Drawing.Size(515, 45);
+            this.TournamentDropDown.TabIndex = 29;
             // 
             // loadexisting
             // 
@@ -98,6 +98,7 @@
             this.CreateTournButton.TabIndex = 38;
             this.CreateTournButton.Text = "Create Tournament";
             this.CreateTournButton.UseVisualStyleBackColor = true;
+            this.CreateTournButton.Click += new System.EventHandler(this.CreateTournButton_Click);
             // 
             // tournamentDashBoard
             // 
@@ -107,7 +108,7 @@
             this.ClientSize = new System.Drawing.Size(773, 511);
             this.Controls.Add(this.CreateTournButton);
             this.Controls.Add(this.LoadTOurnButton);
-            this.Controls.Add(this.SelectTeamMemberDropDown);
+            this.Controls.Add(this.TournamentDropDown);
             this.Controls.Add(this.loadexisting);
             this.Controls.Add(this.TournDashBoardbutton);
             this.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -122,7 +123,7 @@
         #endregion
 
         private System.Windows.Forms.Button TournDashBoardbutton;
-        private System.Windows.Forms.ComboBox SelectTeamMemberDropDown;
+        private System.Windows.Forms.ComboBox TournamentDropDown;
         private System.Windows.Forms.Label loadexisting;
         private System.Windows.Forms.Button LoadTOurnButton;
         private System.Windows.Forms.Button CreateTournButton;

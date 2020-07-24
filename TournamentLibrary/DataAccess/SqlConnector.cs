@@ -220,15 +220,20 @@ namespace TournamentLibrary.DataAccess
                 var p = new DynamicParameters();
                 foreach (TournamentModel t in output)
                 {
-                    t.Prizes = connection.Query<PrizeModel>("dbo.spPrizes_GetByTournament").ToList();
+                    p = new DynamicParameters();
+                    p.Add("@TournamentId", t.Id);
 
-                    t.EnteredTeams = connection.Query<TeamModel>("dbo.spTeam_GetByTournament").ToList();
-                    foreach(TeamModel team in t.EnteredTeams)
+                    t.Prizes = connection.Query<PrizeModel>("dbo.spPrizes_GetByTournament", p, commandType: CommandType.StoredProcedure).ToList();
+
+                    p = new DynamicParameters();
+                    p.Add("@TournamentId", t.Id);
+                    t.EnteredTeams = connection.Query<TeamModel>("dbo.spTeam_GetByTournament", p, commandType: CommandType.StoredProcedure).ToList();
+                    foreach (TeamModel team in t.EnteredTeams)
                     {
                         p = new DynamicParameters();
                         p.Add("@TeamId", team.Id);
 
-                        team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMmembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
+                        team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
                     }
                     p = new DynamicParameters();
                     p.Add("@TournamentId", t.Id);
