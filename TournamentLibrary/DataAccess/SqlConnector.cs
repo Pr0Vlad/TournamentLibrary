@@ -232,7 +232,23 @@ namespace TournamentLibrary.DataAccess
                     }
                     var p = new DynamicParameters();
                     p.Add("@TournamentId", t.Id);
-                    List<MatchupModel> matches = connection.Query<MatchupModel>("spMatchups_GetByTournament", p, commandType: CommandType.StoredProcedure).ToList();
+                    List<MatchupModel> matches = connection.Query<MatchupModel>("dbo.spMatchups_GetByTournament", p, commandType: CommandType.StoredProcedure).ToList();
+
+                    foreach (MatchupModel m in matches)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@MatchupId", m.Id);
+                        m.Entries = connection.Query<MatchupEntryModel>("dbo.spMatchupEntries_GetByMatchup", p, commandType: CommandType.StoredProcedure).ToList();
+
+                        List<TeamModel> all = GetTeam_All();
+                        foreach (var me in m.Entries)
+                        {
+                            if(me.TeamCompetingId > 0)
+                                {
+                                    me.TeamCompeting = all.Where(x => x.Id == me.TeamCompetingId).First();
+                                }
+                        }
+                    }
                 }
             }
             return output;
