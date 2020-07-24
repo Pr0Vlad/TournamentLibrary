@@ -217,20 +217,20 @@ namespace TournamentLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 output = connection.Query<TournamentModel>("dbo.spTournaments_GetAll").ToList();
-
-                foreach(TournamentModel t in output)
+                var p = new DynamicParameters();
+                foreach (TournamentModel t in output)
                 {
                     t.Prizes = connection.Query<PrizeModel>("dbo.spPrizes_GetByTournament").ToList();
 
                     t.EnteredTeams = connection.Query<TeamModel>("dbo.spTeam_GetByTournament").ToList();
                     foreach(TeamModel team in t.EnteredTeams)
                     {
-                        var p = new DynamicParameters();
+                        p = new DynamicParameters();
                         p.Add("@TeamId", team.Id);
 
                         team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMmembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
                     }
-                    var p = new DynamicParameters();
+                    p = new DynamicParameters();
                     p.Add("@TournamentId", t.Id);
                     List<MatchupModel> matches = connection.Query<MatchupModel>("dbo.spMatchups_GetByTournament", p, commandType: CommandType.StoredProcedure).ToList();
 
@@ -241,14 +241,35 @@ namespace TournamentLibrary.DataAccess
                         m.Entries = connection.Query<MatchupEntryModel>("dbo.spMatchupEntries_GetByMatchup", p, commandType: CommandType.StoredProcedure).ToList();
 
                         List<TeamModel> all = GetTeam_All();
+
+                        if (m.WinnerId > 0)
+                        {
+                            m.Winner = all.Where(x => x.Id == m.WinnerId).First();
+                        }
                         foreach (var me in m.Entries)
                         {
                             if(me.TeamCompetingId > 0)
-                                {
-                                    me.TeamCompeting = all.Where(x => x.Id == me.TeamCompetingId).First();
-                                }
+                            {
+                                me.TeamCompeting = all.Where(x => x.Id == me.TeamCompetingId).First();
+                            }
+                            if (me.ParentMatchupId > 0)
+                            {
+                                me.ParentMatchup = matches.Where(x => x.Id == me.ParentMatchupId).First();
+                            }
                         }
                     }
+                    List<MatchupModel> current = new List<MatchupModel>();
+                    int curr = 1;
+                    foreach (MatchupModel m in matches)
+                    {
+                        if(m.MatchupROund > curr)
+                        {
+                            t.Rounds.Add(current);
+                            curr += 1;
+                        }
+                        current.Add(m);
+                    }
+                    t.Rounds.Add(current);
                 }
             }
             return output;
