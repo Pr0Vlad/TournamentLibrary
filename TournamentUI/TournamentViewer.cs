@@ -7,29 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TournamentLibrary.Models;
 
 namespace TournamentUI
 {
     public partial class TournamentViewer : Form
     {
-        public TournamentViewer()
+        private TournamentModel tournament;
+        public TournamentViewer(TournamentModel tournamentModel)
         {
             InitializeComponent();
+            tournament = tournamentModel;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VsLabel_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
