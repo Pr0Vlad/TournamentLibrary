@@ -54,7 +54,6 @@
             this.HeaderLabel.Size = new System.Drawing.Size(197, 45);
             this.HeaderLabel.TabIndex = 0;
             this.HeaderLabel.Text = "Tournament:";
-            this.HeaderLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // TournamentNameLabel
             // 
@@ -66,7 +65,6 @@
             this.TournamentNameLabel.Size = new System.Drawing.Size(121, 40);
             this.TournamentNameLabel.TabIndex = 1;
             this.TournamentNameLabel.Text = "<none>";
-            this.TournamentNameLabel.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // RoundLabel
             // 
@@ -86,6 +84,7 @@
             this.RoundDropDown.Name = "RoundDropDown";
             this.RoundDropDown.Size = new System.Drawing.Size(212, 29);
             this.RoundDropDown.TabIndex = 3;
+            this.RoundDropDown.SelectedIndexChanged += new System.EventHandler(this.RoundDropDown_SelectedIndexChanged);
             // 
             // UnplayedCheckBox
             // 
@@ -180,7 +179,6 @@
             this.VsLabel.Size = new System.Drawing.Size(63, 32);
             this.VsLabel.TabIndex = 12;
             this.VsLabel.Text = "-VS-";
-            this.VsLabel.Click += new System.EventHandler(this.VsLabel_Click);
             // 
             // scoreButton
             // 

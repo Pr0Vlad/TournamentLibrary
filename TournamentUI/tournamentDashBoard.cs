@@ -32,5 +32,12 @@ namespace TournamentUI
             CreateTournament frm = new CreateTournament();
             frm.Show();
         }
+
+        private void LoadTOurnButton_Click(object sender, EventArgs e)
+        {
+            TournamentModel tm = (TournamentModel)TournamentDropDown.SelectedItem;
+            TournamentViewer frm = new TournamentViewer(tm);
+            frm.Show();
+        }
     }
 }

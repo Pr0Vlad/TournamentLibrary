@@ -83,6 +83,7 @@
             this.LoadTOurnButton.TabIndex = 37;
             this.LoadTOurnButton.Text = "Load Tournament";
             this.LoadTOurnButton.UseVisualStyleBackColor = true;
+            this.LoadTOurnButton.Click += new System.EventHandler(this.LoadTOurnButton_Click);
             // 
             // CreateTournButton
             // 
