@@ -39,13 +39,21 @@ namespace TournamentLibrary.Models
                 string output = "";
                 foreach (MatchupEntryModel me in Entries)
                 {
-                    if (output.Length == 0)
-                    {
-                        output = me.TeamCompeting.TeamName;
+                    if (me.TeamCompeting != null) 
+                    { 
+                        if (output.Length == 0)
+                        {
+                            output = me.TeamCompeting.TeamName;
+                        }
+                        else
+                        {
+                            output += $" vs. { me.TeamCompeting.TeamName }";
+                        }
                     }
                     else
                     {
-                        output += $" vs. { me.TeamCompeting.TeamName }";
+                        output = "Matchup Not Yet Known";
+                        break;
                     }
                 }
                 return output;

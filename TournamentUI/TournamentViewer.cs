@@ -32,6 +32,12 @@ namespace TournamentUI
         {
             RoundDropDown.DataSource = null;
             RoundDropDown.DataSource = rounds;
+            
+        }
+
+        private void connectListsTwo()
+        {
+            
             MatchupListBox.DataSource = null;
             MatchupListBox.DataSource = selectedmatchups;
             MatchupListBox.DisplayMember = "DisplayName";
@@ -40,13 +46,14 @@ namespace TournamentUI
         {
             rounds = new List<int>();
             rounds.Add(1);
+            
             int currentRound = 1;
 
             foreach (List<MatchupModel> matchups in tournament.Rounds)
             {
-                if(matchups.First().MatchupROund > currentRound)
+                if(matchups.First().MatchupROund >= currentRound)
                 {
-                    currentRound = matchups.First().MatchupROund;
+                    currentRound += 1;
                     rounds.Add(currentRound);
                     
                 }
@@ -68,7 +75,7 @@ namespace TournamentUI
                     selectedmatchups = matchups;
                 }
             }
-            connectLists();
+            connectListsTwo();
         }
     }
 }
