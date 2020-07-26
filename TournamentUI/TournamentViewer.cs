@@ -14,12 +14,16 @@ namespace TournamentUI
     public partial class TournamentViewer : Form
     {
         private TournamentModel tournament;
-        List<int> rounds = new List<int>();
-        List<MatchupModel> selectedmatchups = new List<MatchupModel>();
+        BindingList<int> rounds = new BindingList<int>();
+        BindingList<MatchupModel> selectedmatchups = new BindingList<MatchupModel>();
+
+   
         public TournamentViewer(TournamentModel tournamentModel)
         {
             InitializeComponent();
             tournament = tournamentModel;
+            connectLists();
+            
             LoadForm();
             LoadRounds();
         }
@@ -30,52 +34,95 @@ namespace TournamentUI
 
         private void connectLists()
         {
-            RoundDropDown.DataSource = null;
+            //RoundDropDown.DataSource = null;          
             RoundDropDown.DataSource = rounds;
-            
-        }
-
-        private void connectListsTwo()
-        {
-            
-            MatchupListBox.DataSource = null;
             MatchupListBox.DataSource = selectedmatchups;
             MatchupListBox.DisplayMember = "DisplayName";
         }
+
+        
         private void LoadRounds()
         {
-            rounds = new List<int>();
+            
+            rounds.Clear();
             rounds.Add(1);
             
             int currentRound = 1;
 
             foreach (List<MatchupModel> matchups in tournament.Rounds)
             {
-                if(matchups.First().MatchupROund >= currentRound)
+                if(matchups.First().MatchupROund > currentRound)
                 {
                     currentRound += 1;
                     rounds.Add(currentRound);
                     
                 }
             }
-            connectLists();
+            LoadMatchups(1);
         }
 
         private void RoundDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadMatchups();
+            LoadMatchups((int)RoundDropDown.SelectedItem);
         }
-        private void LoadMatchups()
+        private void LoadMatchups(int round)
         {
-            int round = (int)RoundDropDown.SelectedItem;
+            
             foreach (List<MatchupModel> matchups in tournament.Rounds)
             {
                 if (matchups.First().MatchupROund == round)
                 {
-                    selectedmatchups = matchups;
+                    selectedmatchups.Clear();
+                    foreach(MatchupModel m in matchups)
+                    {
+                        selectedmatchups.Add(m);
+                    }
+                    
                 }
             }
-            connectListsTwo();
+            loadMatchup(selectedmatchups.First());
+        }
+        private void loadMatchup(MatchupModel m)
+        {
+            
+
+            for (int i = 0; i < m.Entries.Count; i++)
+            {
+                if (i == 0)
+                {
+                    if (m.Entries[0].TeamCompeting != null)
+                    {
+                        TeamOneNameLabel.Text = m.Entries[0].TeamCompeting.TeamName;
+                        TeamOneScoreValue.Text = m.Entries[0].Score.ToString();
+
+                        TeamTwoLabel.Text = "<bye>";
+                        TeamTwoScoreValue.Text = "0";
+                    }
+                    else
+                    {
+                        TeamOneNameLabel.Text = "Not set";
+                        TeamOneScoreValue.Text = "0";
+                    }
+                }
+
+                if (i == 1)
+                {
+                    if (m.Entries[1].TeamCompeting != null)
+                    {
+                        TeamTwoLabel.Text = m.Entries[1].TeamCompeting.TeamName;
+                        TeamTwoScoreValue.Text = m.Entries[1].Score.ToString();
+                    }
+                    else
+                    {
+                        TeamTwoLabel.Text = "Not set";
+                        TeamTwoScoreValue.Text = "0";
+                    }
+                }
+            }
+        }
+        private void MatchupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadMatchup((MatchupModel)MatchupListBox.SelectedItem);
         }
     }
 }

@@ -108,6 +108,7 @@
             this.MatchupListBox.Name = "MatchupListBox";
             this.MatchupListBox.Size = new System.Drawing.Size(305, 152);
             this.MatchupListBox.TabIndex = 5;
+            this.MatchupListBox.SelectedIndexChanged += new System.EventHandler(this.MatchupListBox_SelectedIndexChanged);
             // 
             // TeamOneNameLabel
             // 
