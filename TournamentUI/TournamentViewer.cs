@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TournamentLibrary;
 using TournamentLibrary.Models;
 
 namespace TournamentUI
@@ -210,6 +211,7 @@ namespace TournamentUI
                 MessageBox.Show("Tie Game No Winner");
             }
             //LoadMatchups((int)RoundDropDown.SelectedItem);
+            GlobalConfig.Connection.UpdateMatchup(m);
         }
     }
 }
