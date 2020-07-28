@@ -107,7 +107,6 @@ namespace TournamentUI
         }
         private void loadMatchup(MatchupModel m)
         {
-            
 
             for (int i = 0; i < m.Entries.Count; i++)
             {
@@ -210,6 +209,7 @@ namespace TournamentUI
             {
                 MessageBox.Show("Tie Game No Winner");
             }
+            //LoadMatchups((int)RoundDropDown.SelectedItem);
         }
     }
 }
