@@ -84,7 +84,26 @@ namespace TournamentUI
                     
                 }
             }
-            loadMatchup(selectedmatchups.First());
+            if (selectedmatchups.Count > 0)
+            {
+                loadMatchup(selectedmatchups.First());
+            }
+            DisplayMatchupInfo();
+        }
+        private void DisplayMatchupInfo()
+        {
+            bool isSeen = (selectedmatchups.Count > 0);
+            TeamOneNameLabel.Visible = isSeen;
+            TeamOneScoreLabel.Visible = isSeen;
+            TeamOneScoreValue.Visible = isSeen;
+
+            TeamTwoLabel.Visible = isSeen;
+            TeamTwoScoreValueLabel.Visible = isSeen;
+            TeamTwoScoreValue.Visible = isSeen;
+
+            VsLabel.Visible = isSeen;
+            scoreButton.Visible = isSeen;
+
         }
         private void loadMatchup(MatchupModel m)
         {
@@ -150,7 +169,7 @@ namespace TournamentUI
                         bool scoregood = double.TryParse(TeamOneScoreValue.Text, out teamOne);
                         if (scoregood)
                         {
-                            m.Entries[0].Score = teamTwo;
+                            m.Entries[0].Score = teamOne;
                         }
                         else
                         {
@@ -168,7 +187,7 @@ namespace TournamentUI
                         bool scoregood = double.TryParse(TeamTwoScoreValue.Text, out teamTwo);
                         if (scoregood)
                         {
-                            m.Entries[0].Score = teamOne;
+                            m.Entries[1].Score = teamTwo;
                         }
                         else
                         {
@@ -182,6 +201,14 @@ namespace TournamentUI
             if (teamOne > teamTwo)
             {
                 m.Winner = m.Entries[0].TeamCompeting;
+            }
+            else if (teamTwo > teamOne)
+            {
+                m.Winner = m.Entries[1].TeamCompeting;
+            }
+            else
+            {
+                MessageBox.Show("Tie Game No Winner");
             }
         }
     }
