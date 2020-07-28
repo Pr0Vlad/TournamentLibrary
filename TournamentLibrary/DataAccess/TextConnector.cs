@@ -111,7 +111,7 @@ namespace TournamentLibrary.DataAccess
 
         public void UpdateMatchup(MatchupModel model)
         {
-            throw new NotImplementedException();
+            model.updateMatchupToFile();
         }
     }
 }

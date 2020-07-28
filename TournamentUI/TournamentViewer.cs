@@ -210,7 +210,27 @@ namespace TournamentUI
             {
                 MessageBox.Show("Tie Game No Winner");
             }
-            //LoadMatchups((int)RoundDropDown.SelectedItem);
+            foreach (List<MatchupModel> round in tournament.Rounds)
+            {
+                foreach (MatchupModel rm in round)
+                {
+                    foreach (MatchupEntryModel me in rm.Entries)
+                    {
+                        if (me.ParentMatchup != null)
+                        {
+                            if (me.ParentMatchup.Id == m.Id)
+                            {
+                                me.TeamCompeting = m.Winner;
+                                GlobalConfig.Connection.UpdateMatchup(rm);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+
+            LoadMatchups((int)RoundDropDown.SelectedItem);
+
             GlobalConfig.Connection.UpdateMatchup(m);
         }
     }
